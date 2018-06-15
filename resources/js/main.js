@@ -4,40 +4,49 @@ $(document).ready(function(){
 
 });
 
+const $window = $(window);
+const $root = $('html, body');
+const $toggle = $('.nav-toggle');
+const $navlist = $('.nav-list');
+const $header = $('header');
+const $title = $('.title h2');
+const $line = $('line');
+const $checkview = $('.check-view');
+
 //Toggle dropdown functionality
-$('.nav-toggle').on('click', function(e) {
+$toggle.on('click', function(e) {
   e.preventDefault();
   if (scrollCheck() == false) {
     return;
   } else {
-    $('.nav-list').slideToggle(250);
+    $navlist.slideToggle(250);
     $(this).toggleClass('active');
   }
 });
 
 //Configure dropdown on window resize
 
-$(window).on('resize', function() {
-  if ($(window).width() > 768) {
-    $('.nav-list').show();
-  } else if ($('.nav-toggle').hasClass('active')) {
-    $('.nav-toggle').removeClass('active');
-    $('.nav-list').slideToggle(250);
-  } else if (!$('.nav-toggle').hasClass('active') && $('.nav-list').is(':visible')) {
-    $('.nav-list').hide();
+$window.on('resize', function() {
+  if ($window.width() > 768) {
+    $navlist.show();
+  } else if ($toggle.hasClass('active')) {
+    $toggle.removeClass('active');
+    $navlist.slideToggle(250);
+  } else if (!$toggle.hasClass('active') && $navlist.is(':visible')) {
+    $navlist.hide();
   };
 });
 
 //Header fade in/out on Scroll
 
-$(window).scroll(function() {
+$window.scroll(function() {
   moveHeadItems();
   scrollLoop();
 });
 
 //Slide Timeline Events when inview
 
-$('.check-view').on('inview', function(e, isInView) {
+$checkview.on('inview', function(e, isInView) {
   if (isInView) {
     $(this).parent().delay(9000).addClass('is-inview');
   };
@@ -47,22 +56,20 @@ $('.check-view').on('inview', function(e, isInView) {
 
 function moveHeadItems() {
   if (scrollCheck() == true) {
-    $('header').addClass('isScrolled');
-    $('.title h2').addClass('isFaded');
-    $('line').addClass('isAnimated');
+    $header.addClass('is-scrolled');
+    $title.addClass('is-faded');
+    $line.addClass('is-animated');
   } else {
-    $('header').removeClass('isScrolled');
-    $('.title h2').removeClass('isFaded');
-    if ($('.nav-toggle').hasClass('active') && $(window).width() <= 768) {
-      $('.nav-toggle').removeClass('active');
-      $('.nav-list').slideToggle(250);
+    $header.removeClass('is-scrolled');
+    $title.removeClass('is-faded');
+    if ($toggle.hasClass('active') && $(window).width() <= 768) {
+      $toggle.removeClass('active');
+      $navlist.slideToggle(250);
     }
   }
 }
 
 //Smooth scroll for anchors
-
-var $root = $('html, body');
 
 $('.js-scroll').on('click', function(e) {
   e.preventDefault();
@@ -86,7 +93,7 @@ function setTranslate(xPos, yPos, el) {
 }
 
 function scrollLoop() {
-  var $viewHeight = $(window).height();
+  var $viewHeight = $window.height();
   var xScrollPosition = window.scrollX;
   var yScrollPosition = window.scrollY;
   var $introSection = document.querySelector("section:nth-of-type(1)");

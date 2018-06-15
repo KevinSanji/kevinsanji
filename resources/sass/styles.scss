@@ -318,11 +318,11 @@ header {
   top: 8px;
 }
 
-.isScrolled {
+.is-scrolled {
   background-color: rgba(35, 31, 32, .8) !important;
 }
 
-.isScrolled a, .isScrolled ul {
+.is-scrolled a, .is-scrolled ul {
   -webkit-transform: translate3d(0, 0, 0);
      -moz-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -394,14 +394,14 @@ line {
   stroke-dashoffset: 500;
 }
 
-.isAnimated {
+.is-animated {
   -webkit-animation: offset 1s ease-in-out forwards;
      -moz-animation: offset 1s ease-in-out forwards;
        -o-animation: offset 1s ease-in-out forwards;
           animation: offset 1s ease-in-out forwards;
 }
 
-.isFaded {
+.is-faded {
   opacity: 0;
 }
 
