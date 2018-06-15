@@ -8,6 +8,7 @@ const $window = $(window);
 const $root = $('html, body');
 const $toggle = $('.nav-toggle');
 const $navlist = $('.nav-list');
+const $link = $('.nav-list li a');
 const $header = $('header');
 const $title = $('.title h2');
 const $line = $('line');
@@ -21,6 +22,15 @@ $toggle.on('click', function(e) {
   } else {
     $navlist.slideToggle(250);
     $(this).toggleClass('active');
+  }
+});
+
+//Close dropdown on link click
+
+$link.on('click', function() {
+  if ($window.width() < 768 && $toggle.hasClass('active')) {
+    $toggle.removeClass('active');
+    $navlist.slideToggle(250);
   }
 });
 
